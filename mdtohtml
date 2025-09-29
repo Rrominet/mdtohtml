@@ -1,0 +1,37 @@
+#!/usr/local/bin/python3
+#
+
+import os
+import subprocess
+import sys
+from ml import fileTools as ft
+
+def main() : 
+    if len(sys.argv) <= 1 :
+        print("Usage : " + ft.baseName(sys.argv[0]) + " <mdfile>")
+        print("add --help for more infos.")
+        exit(1)
+    elif "--help" in sys.argv or "-h" in sys.argv :
+        print("if <outputfile> is not given, <mdfile> is used as filebasename. Idem for the title.")
+        print("Usage : " + ft.baseName(sys.argv[0]) + " <mdfile> <htmltitle> <outputfile>")
+        exit(1)
+    else :
+        mdfile = sys.argv[1]
+        htmltitle = ""
+        outputfile = ""
+        if len(sys.argv) > 2 :
+            htmltitle = sys.argv[2]
+        else :
+            htmltitle = ft.baseName(mdfile)
+            htmltitle = htmltitle.capitalize()
+        if len(sys.argv) > 3 :
+            outputfile = sys.argv[3]
+        else :
+            outputfile = ft.baseName(mdfile) + ".html"
+
+        cmd = "pandoc " + mdfile + " -o " + outputfile + " --from markdown+hard_line_breaks -s --template=./md_template.html -M title=\"" + htmltitle + "\""
+        subprocess.call(cmd, shell=True)
+
+        print("File " + outputfile + " created.")
+
+main()
