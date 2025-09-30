@@ -20,6 +20,10 @@ sudo dnf install pandoc
 ```
 
 Then, just clone this git repo and exec the file *mdtohtml*.  
+```bash
+cd /where/you/want/to/install/this/tool
+git clone https://github.com/Rrominet/mdtohtml.git
+```
 You might need to make executable depending of your filesystem.
 
 If so : 
@@ -28,7 +32,7 @@ cd /where/you/cloned/this/repo
 sudo chmod +x ./mdtohtml
 ```
 > [!IMPORTANT]
-> If you want to move the file `mdtohtml`, you eed to move the file `md_template.html` with it. These files need to be in the same directory for the tool to correctly work.
+> If you want to move the file `mdtohtml`, you need to move the file `md_template.html` with it. These files need to be in the same directory for the tool to correctly work.
 
 ## Basic Usage
 
@@ -52,11 +56,11 @@ mdtohtml your-md-file.md "Your Custom Title" your-custom-file.html
 ## Useful Usage
 
 As it is, this tool is not very useful, you could do the same with pandoc before.  
-It just has a simpler cli interface.
+It just has a simpler CLI interface.
 
 It become interesting wen it's paired with the *save* event of your code editor.
 
-What you can do is simply execute the command *mdtohtml you-current-file.md* on each save event to generate in real time you html version that you can preview in your browser.
+What you can do is simply execute the command `mdtohtml you-current-file.md` on each save event to generate in real time you html version that you can preview in your browser.
 
 > [!IMPORTANT]
 > For the rest of the configuration to work you need to have added the path of the directory that contains *mdtohtml* to your PATH global environment variable.
@@ -116,8 +120,8 @@ Should work. If not, let me know.
 
 ### How to setup *Neovim* to do this :
 
-You can use my open source rplugin [hooks](https://github.com/Rrominet/nvim-hooks)
-Once installed, create the following file in `~/.config/nvim/hooks.json` :
+You can use my open source rplugin [hooks](https://github.com/Rrominet/nvim-hooks) for this.  
+Once installed (the instructions for its installation are [here](https://github.com/Rrominet/nvim-hooks)), create the following file in `~/.config/nvim/hooks.json` :
 ```json
 [
     {
@@ -137,4 +141,5 @@ Once installed, create the following file in `~/.config/nvim/hooks.json` :
 ]
 ```
 
-Once your file is created/modified, you can relaod it typing the command `:RealoadHooks`.
+Once your file is created/modified, you can reload it typing the command `:RealoadHooks`.
+More infos on how the `hooks` rplugin works [here](https://github.com/Rrominet/nvim-hooks)
