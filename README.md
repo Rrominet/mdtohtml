@@ -37,7 +37,7 @@ sudo chmod +x ./mdtohtml
 > [!WARNING]
 > Right now, `mdtohtml` use `/usr/local/bin/python3` to run.  
 > There are a lot of chances that your python version is different (often : `/usr/bin/python3`).  
-> If so change the first line of the file `mdtohtml` to `#!/usr/bin/python3` (or your python executable path)
+> If so, change the first line of the file `mdtohtml` to `#!/usr/bin/python3` (or your python executable path keeping the `#!` at the begining)
 
 ## Basic Usage
 
