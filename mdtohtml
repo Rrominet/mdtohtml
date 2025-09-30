@@ -17,21 +17,31 @@ def main() :
         exit(1)
     else :
         mdfile = sys.argv[1]
+        mdfile = os.path.abspath(mdfile)
         htmltitle = ""
         outputfile = ""
         if len(sys.argv) > 2 :
             htmltitle = sys.argv[2]
         else :
             htmltitle = ft.baseName(mdfile)
-            htmltitle = htmltitle.capitalize()
+            htmltitle = htmltitle.replace("_", " ")
+            htmltitle = htmltitle.replace("-", " ")
+            htmltitle = htmltitle.title()
         if len(sys.argv) > 3 :
             outputfile = sys.argv[3]
         else :
             outputfile = ft.baseName(mdfile) + ".html"
+            outputfile = os.path.dirname(os.path.abspath(mdfile)) + os.sep + outputfile
 
-        cmd = "pandoc " + mdfile + " -o " + outputfile + " --from markdown+hard_line_breaks -s --template=./md_template.html -M title=\"" + htmltitle + "\""
-        subprocess.call(cmd, shell=True)
+        tplpath = os.path.dirname(__file__) + "/md_template.html"
+        cmd = ["pandoc", mdfile, "-o", outputfile, "--from", "markdown+hard_line_breaks", "-s", "--template=" + tplpath, "-M", "title=" + htmltitle]
+        proc = subprocess.run(cmd, capture_output=True, text=True)
 
-        print("File " + outputfile + " created.")
+        if proc.returncode != 0 :
+            print("Conversion failed :")
+            print(proc.stderr)
+            exit(1)
+        else : 
+            print("File " + outputfile + " created.")
 
 main()
