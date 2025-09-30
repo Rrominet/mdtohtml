@@ -63,7 +63,7 @@ mdtohtml your-md-file.md "Your Custom Title" your-custom-file.html
 As it is, this tool is not very useful, you could do the same with pandoc before.  
 It just has a simpler CLI interface.
 
-It become interesting wen it's paired with the *save* event of your code editor.
+It become interesting when it's paired with the *save* event of your code editor.
 
 What you can do is simply execute the command `mdtohtml you-current-file.md` on each save event to generate in real time you html version that you can preview in your browser.
 
