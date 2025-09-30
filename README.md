@@ -34,6 +34,11 @@ sudo chmod +x ./mdtohtml
 > [!IMPORTANT]
 > If you want to move the file `mdtohtml`, you need to move the file `md_template.html` with it. These files need to be in the same directory for the tool to correctly work.
 
+> [!WARNING]
+> Right now, `mdtohtml` use `/usr/local/bin/python3` to run.
+> There are a lot of chances that your python version is different (often : `/usr/bin/python3`).
+> If so change the first line of the file `mdtohtml` to `#!/usr/bin/python3` (or your python executable path)
+
 ## Basic Usage
 
 The simplest way to use it :
